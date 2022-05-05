@@ -58,19 +58,20 @@ function dramaMoviesScore(movies) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
-  const sortedArray = movies.sort(function compare(a,b) {
+  const newArray = [...movies]
+  const sortedArray = newArray.sort(function compare(a,b) {
     if (a.year < b.year) return -1
     if (a.year > b.year) return 1
     if (a.title < b.title) return -1
     if (a.title > b.title) return 1
-
   }) 
    return sortedArray
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
-  const newArraySorted =[...movies].sort(function compare(a,b){
+  const newArray = [...movies]
+  const newArraySorted =newArray.sort(function compare(a,b){
     if (a.title < b.title) return -1
     if (a.title > b.title) return 1
   })
@@ -86,7 +87,7 @@ function orderAlphabetically(movies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
-  const HoursToMinutesArray = []
+  const HoursToMinutesArray = [...movies]
    movies.map(movie => {
     let newHour = 0
     if (movie.duration.length > 2) {
@@ -103,7 +104,47 @@ function turnHoursToMinutes(movies) {
 
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(movies) {
+  // calculatin a unique array of the years
+  if (!movies.length) {
+    return null
+  } else {
+  const unique = [...new Set(movies.map(movie => movie.year))]
+  
+  console.log(unique)
+  let maxAverage = 0, scoreTotal= 0, amountMovies= 0, bestYear = ""
+  console.log(maxAverage, scoreTotal, amountMovies, bestYear)
+  for (let i=0; i< unique.length; ++i) {
+    amountMovies= 0;
+    scoreTotal = 0
+    for (let j=0; j<movies.length;++j) {
+      
+      if (movies[j].year === unique[i]){
+        amountMovies += 1
+        scoreTotal += movies[j].score
+      }
+      if (unique[i-1] === 1972) {
+        console.log(maxAverage, scoreTotal, amountMovies, bestYear)
+        console.log[movies[j]]
+      }
+    }
+    if (scoreTotal/amountMovies > maxAverage) {
+      maxAverage = scoreTotal/amountMovies
+      bestYear = unique[i]
+    } else if (scoreTotal/amountMovies === maxAverage){
+      if(bestYear > unique[i]) {
+        bestYear= unique[i]
+      }
+    }
+  }
+    return `The best year was ${bestYear} with an average score of ${maxAverage}` 
+}
+}
+  /* creating an arrey of objects for every year
+  const scoreForYearArray = []
+  
+  console.log(scoreForYearArray)*/
+
 
 
 
